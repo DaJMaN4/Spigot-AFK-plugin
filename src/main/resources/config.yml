@@ -1,16 +1,14 @@
 messages:
-  admin comes back:
-    - "§fJuz nie jest AFK"
   player without permission uses /afk:
-    - "to dla admina, nie dla pana :L"
+    - "&7You dont have permission to use this plugin"
   admin afk on all players:
-    - "§fjest teraz AFK"
+    - "§fIs now AFK"
   admin afk off all players:
-    - "§fjuz nie jest AFK"
+    - "§fIs no longer AFK"
   player get kick because afk screen:
-    - "Byles AFK przez..."
+    - "You have been kicked because you were afk"
   before kick:
-    - "ej bo kicka dostaniesz typiarzu"
+    - "Move or you will be kicked"
 worlds where kick will not work:
   - "spawm"
 

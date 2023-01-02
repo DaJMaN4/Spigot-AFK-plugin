@@ -1,0 +1,6 @@
+name: Afk
+version: '${project.version}'
+main: me.afk.Afk
+api-version: 1.18
+commands:
+  afk:

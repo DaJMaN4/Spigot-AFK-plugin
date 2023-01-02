@@ -1,0 +1,34 @@
+messages:
+  admin comes back:
+    - "§fJuz nie jest AFK"
+  player without permission uses /afk:
+    - "to dla admina, nie dla pana :L"
+  admin afk on all players:
+    - "§fjest teraz AFK"
+  admin afk off all players:
+    - "§fjuz nie jest AFK"
+  player get kick because afk screen:
+    - "Byles AFK przez..."
+  before kick:
+    - "ej bo kicka dostaniesz typiarzu"
+worlds where kick will not work:
+  - "spawm"
+
+time before kick:
+  - 20
+
+reminder before kick:
+  - 15
+
+afk permissions:
+  - "helper"
+  - "mod"
+  - "dev"
+  - "admin"
+  - "opiekun"
+  - "root"
+
+opiekunowie:
+  - "Andrzej"
+  - "Staszek"
+  - "Wiesia"

@@ -1,12 +1,14 @@
 package me.afk;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.*;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -15,17 +17,20 @@ import java.util.*;
 public final class Afk extends JavaPlugin implements Listener {
 
     public Map<Player, Integer> afktime = new HashMap<Player, Integer>();
+    public Map<ItemStack, Integer> items = new HashMap<ItemStack, Integer>();
     public List<Player> plays = new ArrayList<Player>();
     public List<String> w = this.getConfig().getStringList("worlds where kick will not work");
     public List<String> o = this.getConfig().getStringList("afk permissions");
-    public String m = this.getConfig().getList("messages.player get kick because afk screen").get(0).toString();
-    public String h = this.getConfig().getList("messages.before kick").get(0).toString();
-    public Integer k = this.getConfig().getIntegerList("time before kick").get(0);
-    public Integer l = this.getConfig().getIntegerList("reminder before kick").get(0);
+    public String m = this.getConfig().getString("messages.player get kick because afk screen");
+    public String h = this.getConfig().getString("messages.before kick");
+    public Integer k = this.getConfig().getInt("time before kick");
+    public Integer l = this.getConfig().getInt("reminder before kick");
 
 
     @Override
     public void onEnable() {
+        System.out.println(k);
+        System.out.println("Andan");
         // Plugin startup logic
         this.saveDefaultConfig();
         this.getServer().getPluginManager().registerEvents(this, this);
@@ -81,12 +86,12 @@ public final class Afk extends JavaPlugin implements Listener {
             if (isPlayerInGroup(p)) { //"afk.on";
                 plays.add(p);
                 getServer().broadcastMessage(text(p) + ChatColor.translateAlternateColorCodes('&',
-                        this.getConfig().getList("messages.admin afk on all players").get(0).toString()));
+                        this.getConfig().getString("messages.admin afk on all players")));
                 return true;
             }
             else
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                        this.getConfig().getList("messages.player without permission uses /afk").get(0).toString()));
+                        this.getConfig().getString("messages.player without permission uses /afk")));
         }
         return false;
     }
@@ -109,14 +114,14 @@ public final class Afk extends JavaPlugin implements Listener {
     @EventHandler
     public void dontmove(PlayerMoveEvent event) {
         if (this.getConfig().getConfigurationSection("worlds where kick will not work") != null)
-            if (this.getConfig().getConfigurationSection("worlds where kick will not work").contains(event.getPlayer().getWorld().getName()))
+            if (Objects.requireNonNull(this.getConfig().getConfigurationSection("worlds where kick will not work")).contains(event.getPlayer().getWorld().getName()))
                 return;
 
         if (plays.contains(event.getPlayer())) { //event.setCancelled(true)
             Player p = event.getPlayer();
             plays.remove(p);
             getServer().broadcastMessage(text(p) + ChatColor.translateAlternateColorCodes('&',
-                    this.getConfig().getList("messages.admin afk off all players").get(0).toString()));
+                    this.getConfig().getString("messages.admin afk off all players")));
             return;
         }
         if (!isPlayerInGroup(event.getPlayer()))
@@ -130,8 +135,25 @@ public final class Afk extends JavaPlugin implements Listener {
             Player p = event.getPlayer();
             plays.remove(p);
             getServer().broadcastMessage(text(p) + ChatColor.translateAlternateColorCodes('&',
-                        this.getConfig().getList("messages.admin afk off all players").get(0).toString()));
+                        this.getConfig().getString("messages.admin afk off all players")));
         }
+    }
+
+    public void Alagadda() {
+        this.getConfig().getConfigurationSection("blocks").getKeys(false).forEach(key -> {
+            int position = 0;
+            Random r = new Random();
+            for (String i : this.getConfig().getStringList("blocks." + key)) {
+                ItemStack item;
+                try {
+                    item = new ItemStack(Material.matchMaterial(i), r.nextInt(16) + 1);  // itemStack first argument is the block and next amount
+                } catch (Exception e) {
+                    item = new ItemStack(Material.matchMaterial(key));
+                }
+                items.put(item, 69);
+                position++;
+            }
+        });
     }
 
 

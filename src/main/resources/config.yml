@@ -1,22 +1,22 @@
 messages:
   player without permission uses /afk:
-    - "&7You dont have permission to use this plugin"
+    "&7You dont have permission to use this plugin"
   admin afk on all players:
-    - "§fIs now AFK"
+    "§fIs now AFK"
   admin afk off all players:
-    - "§fIs no longer AFK"
+    "§fIs no longer AFK"
   player get kick because afk screen:
-    - "You have been kicked because you were afk"
+    "You have been kicked because you were afk"
   before kick:
-    - "Move or you will be kicked"
+    "Move or you will be kicked"
 worlds where kick will not work:
   - "spawm"
 
 time before kick:
-  - 20
+  20
 
 reminder before kick:
-  - 15
+  15
 
 afk permissions:
   - "helper"
@@ -30,3 +30,32 @@ opiekunowie:
   - "Andrzej"
   - "Staszek"
   - "Wiesia"
+
+items:
+  WEB:
+    40
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
